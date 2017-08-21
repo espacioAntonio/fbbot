@@ -26,10 +26,9 @@ Install
 4. Simple EchoBot example "simpleEchoBot.py"::
 
 
-.. literalinclude:: fbbot/test/simpleEchoBot.py
-   :language: python
-   :emphasize-lines: 12,15-18
-   :linenos:
+literalinclude:: fbbot/test/simpleEchoBot.py
+:language: python
+:linenos:
 
 5. Run `python3 simpleEchoBot.py` to collect files to test.
 
