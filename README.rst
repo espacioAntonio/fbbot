@@ -17,9 +17,8 @@ Install
 
     FB_VERIFY_TOKEN = "VERIFY_TOKEN_DEFINED_BY_DEVELOPER"
     FB_PAGE_TOKEN = "FACEBOOK_PAGE_TOKEN"
-    BASE_URL = "URL_PROVIDED_FOR_NGROK" #example: https://12346578.ngrok.io or https://www.yourdomain.com
 
-    simpleEchoBot.run(FB_VERIFY_TOKEN, FB_PAGE_TOKEN, BASE_URL)
+    simpleEchoBot.run(FB_VERIFY_TOKEN, FB_PAGE_TOKEN, port="8000")
 
 
 5. Run `python3 my_fbbot.py`.
