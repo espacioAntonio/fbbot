@@ -7,9 +7,8 @@ from fbbot.wrappers import require_media_in
 
 
 class Bot:
-    def __init__(self, fb_page_token, base_url):
+    def __init__(self, fb_page_token):
         self.FB_PAGE_TOKEN = fb_page_token
-        self.BASE_URL = base_url
         self.API_VERSION = 'v2.6'
         self.message_type_functions = {'optin': self.receivedAuthentication,
                                        'message': self.receivedMessage,
@@ -77,7 +76,7 @@ class Bot:
         if message_text:
             self.receivedMessageText(message_text, sender_id)
         elif message_attachments:
-            self.receivedMessageAttachments(sender_id)
+            self.receivedMessageAttachments(message_attachments, sender_id)
 
     def receivedMessageEcho(self, received_message):
         app_id = received_message['app_id'] if 'app_id' in received_message else ""

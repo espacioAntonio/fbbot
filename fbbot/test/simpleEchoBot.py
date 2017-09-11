@@ -12,16 +12,15 @@ from fbbot.bot import Bot
 
 #FB_VERIFY_TOKEN = "VERIFY_TOKEN_DEFINED_BY_DEVELOPER"
 #FB_PAGE_TOKEN = "FACEBOOK_PAGE_TOKEN"
-#BASE_URL = "URL_PROVIDED_FOR_NGROK" #example: https://12346578.ngrok.io or https://www.yourdomain.com
 
 
-def make_handler_with_tokens(verify_token, page_token, base_url, bot=None):
+def make_handler_with_tokens(verify_token, page_token, bot=None):
     # HTTPRequestHandler class
     class TestRequestHandler(BaseHTTPRequestHandler):
         if bot:
             myBot = bot
         else:
-            myBot = Bot(page_token, base_url)
+            myBot = Bot(page_token)
 
         def do_GET(self):
             print(self.path)
@@ -65,14 +64,14 @@ def make_handler_with_tokens(verify_token, page_token, base_url, bot=None):
     return TestRequestHandler
 
 
-def run(verify_token=None, page_token=None, base_url=None):
+def run(verify_token=None, page_token=None, port=8080, bot=None):
     if not verify_token:
         raise KeyError("'verify_token' is required: 'VERIFY_TOKEN_DEFINED_BY_DEVELOPER'")
     if not page_token:
         raise KeyError("'page_token' is required: 'FACEBOOK_PAGE_TOKEN'")
     print('starting server...')
-    server_address = ('127.0.0.1', 8080)
-    request_handler = make_handler_with_tokens(verify_token, page_token, base_url)
+    server_address = ('127.0.0.1', port)
+    request_handler = make_handler_with_tokens(verify_token, page_token, bot=bot)
     httpd = HTTPServer(server_address, request_handler)
     print('running server...')
     httpd.serve_forever()
